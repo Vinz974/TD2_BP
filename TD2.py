@@ -1,10 +1,16 @@
-import random
+from random import SystemRandom
+secure_rand_gen = SystemRandom()
 import numpy as np
+
+taille=0
+for i in range(128):
+    taille+=2^i
+
 
 seed_binaire=[0]*128
 seed=0
 for i in range(128):
-    seed_binaire[i]=random.randint(0,1)
+    seed_binaire[i]=secure_rand_gen.randint(0,1)
     seed+=seed_binaire[i]*(2**i)
 
 tab=np.zeros((12,11))
@@ -30,11 +36,11 @@ fichier=open("C:/Users/torta/OneDrive/Documents/ESILV/Semestre 2/Blockchain Prog
 fichier.write(seed_mnemonic)
 fichier.close
 
-seed_import=""
-fichier_import=open("C:/Users/torta/OneDrive/Documents/ESILV/Semestre 2/Blockchain Programming/TD2/seed.txt",'r')
+#seed_import=""
+#fichier_import=open("C:/Users/torta/OneDrive/Documents/ESILV/Semestre 2/Blockchain Programming/TD2/seed.txt",'r')
 
-seed_import=fichier.read()
-fichier_import.close()
+#seed_import=fichier.read()
+#fichier_import.close()
 
 bip39wordlist = [
     "abandon",
