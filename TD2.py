@@ -2,6 +2,9 @@ import random
 import numpy as np
 import secrets
 import hashlib
+
+print("QUe voulez vous faire ?")
+
 seed_binaire=[0]*128
 seed=0
 for i in range(128):
