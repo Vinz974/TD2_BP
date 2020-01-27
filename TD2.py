@@ -5,15 +5,14 @@ secure_rand_gen = SystemRandom()
 import numpy as np
 
 def seed_binaire():# crée une seed en binaire avec un random sur les 0 ou 1 dans chaque case
-    seed_binaire=[0]*128
-    seed=0
+    seed_binare=[0]*128
     for i in range(128):
-        seed_binaire[i]=secure_rand_gen.randint(0,1)
-        seed+=seed_binaire[i]*(2**i)
-    return seed_binaire
+        seed_binare[i]=secure_rand_gen.randint(0,1)
+    return seed_binare
 
 def seed_number():#conversion du binaire en aléatoire
     seed_binary=seed_binaire()
+    seed=0
     for i in range(128):
         seed+=seed_binary[i]*(2**i)
     return seed
@@ -74,6 +73,7 @@ def Chain_Code(seed_bin):#Pareil avec les 64 d'après (de droite)
      hashed_512=hashlib.sha512(seed_bin.encode('utf-8')).hexdigest()
      return hashed_512[64:128]
 
+seed=0
 i=5
 print("Bonjour")
 while i>1:
