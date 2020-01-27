@@ -9,13 +9,22 @@ for i in range(128):
     seed+=seed_binaire[i]*(2**i)
 
 tab=np.zeros((12,11))
+seed_bin=bin(seed)
+hashed = hashlib.sha256(seed_bin.encode('utf-8')).hexdigest()
+checksum = bin(int(hashed,16))[2:].zfill(256)[:4]
 
 a=0
+b=0
 for i in range(12):
     for j in range(11):
         if(a<128):
             tab[i,j]=seed_binaire[a]
             a+=1
+        if(a<132 and a>127):
+            tab[i,j]=checksum[b]
+            b+=1
+            a+=1
+
 
 seed_mnemonic=""
 
