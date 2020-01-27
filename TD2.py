@@ -17,7 +17,7 @@ def seed_number():#conversion du binaire en aléatoire
         seed+=seed_binary[i]*(2**i)
     return seed
 
-def cut_and_checksum(seed_binaire):#création d'un tableau de tableaux pour construire les 11 portions de 12 bits en utilisant le checksum (calculé ci dessous)
+def cut_and_checksum(seed_binaire):#création d'un tableau de tableaux pour construire les 12 portions de 11 bits en utilisant la checksum (calculé ci dessous)
 
     tab=np.zeros((12,11))
     hashed = hashlib.sha256(seed_binaire.encode('utf-8')).hexdigest()#hachage de la seed binaire avec sha256
