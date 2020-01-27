@@ -66,11 +66,15 @@ def import_seed():#importe la seed sur python
 
 def Master_PV(seed_bin):#On hache puis on récupère les 64 premiers (éléments à gauche)
     hashed_512=hashlib.sha512(seed_bin.encode('utf-8')).hexdigest()
+    for i in range(0,64):
+        print(hashed_512[i])
     return hashed_512[:64]
 
 
 def Chain_Code(seed_bin):#Pareil avec les 64 d'après (de droite)
      hashed_512=hashlib.sha512(seed_bin.encode('utf-8')).hexdigest()
+     for i in range(64,128):
+         print(hashed_512[i])
      return hashed_512[64:128]
 
 seed=0
@@ -85,26 +89,19 @@ while i>1:
     if i == 0:
         seed = seed_number()
         print(seed)
-
     else:
-        import_seed = importation_seed()
-        if verif_seed(import_seed) == True:
-            seed = import_seed[:128]
-            print("La clé est bien importer")
-        else:
-            print("La clé n'est pas valide")
-            i=2
+        imported_seed=import_seed
 
 i=3
 while i!=0:
     print("Que voulez vous faire?")
     print("Taper 1 pour extraire la master private key")
     print("Taper 2 pour extraire le chain code")
-    print("Taper 0 pour quiter")
+    seed_bin=bin(seed)
     i = int(input())
 
     if i ==1:
-        master_private_key(seed)
+        Master_PV(seed_bin)
     if i == 2:
-        master_Chain_code(seed)
+        Chain_Code(seed_bin)
 
